@@ -1,0 +1,65 @@
+<div class="container">
+    <!-- Content here -->
+    <h1>Mantenimiento de Mascotas</h1>
+    <div class="card-body">
+        <h5>Datos de la mascota</h5>
+        <form>
+            <input type="hidden" id="id">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" aria-describedby="nombreHelp">
+                <div id="nombreHelp" class="form-text">INgrese el nombre de la mascota.</div>
+            </div>
+            <div class="mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="edad" aria-describedby="edadHelp">
+                <div id="edadHelp" class="form-text">Ingrese la edad de la mascota.</div>
+            </div>
+            <button type="button" class="btn btn-primary">Guardar</button>
+        </form>
+        <br>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>15</td>
+                    <td>
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>15</td>
+                    <td>
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>John</td>
+                    <td>3</td>
+                    <td>
+                            <button type="button" class="btn btn-primary" style="margin-right: 10px;">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card">
