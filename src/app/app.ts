@@ -11,4 +11,6 @@ import { Mascota } from './componenets/mascota/mascota';
 export class App {
   protected readonly title = signal('eje-11-aipg');
 }
-  
+
+
+

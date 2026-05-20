@@ -1,28 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MascotaService } from '../../services/mascota.service';
+import { MascotaModel } from '../../models/mascota.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mascota',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './mascota.html',
   styleUrl: './mascota.css',
 })
-export class Mascota {
-  listaMascotas = [
-    { id: 1, nombre: 'Firulais', tipo: 'Perro' },
-    { id: 2, nombre: 'Miau', tipo: 'Gato' },
-    { id: 3, nombre: 'Nemo', tipo: 'Pez' },
-  ];
+export class Mascota implements OnInit {
+  mascotas: MascotaModel[] = [];
 
+  mascota: MascotaModel = {
+    id: 0,
+    nombre: '',
+    edad: 0,
+  };
 
+  enEdicion = false;
 
-  guardarMascota() {
-    console.log('Mascota guardada');
+  constructor(private mascotaService: MascotaService) {}
+
+  ngOnInit(): void {
+    this.listar();
   }
-  actualizarMascota() {
-    console.log('Mascota actualizada');
+
+  listar(): void {
+    this.mascotas = this.mascotaService.findAll();
   }
-eliminarMascota(id: number) {
-    this.listaMascotas = this.listaMascotas.filter(mascota => mascota.id !== id);
-    console.log(`Mascota con id ${id} eliminada`);
+
+  guardar(): void {
+    if (!this.mascota.nombre.trim()) {
+      alert('El nombre es obligatorio.');
+      return;
+    }
+    this.mascotaService.save(this.mascota);
+    this.limpiar();
+    this.listar();
+  }
+
+  editar(mascota: MascotaModel): void {
+    // Copia para no mutar el original hasta guardar
+    this.mascota = { ...mascota };
+    this.enEdicion = true;
+  }
+
+  eliminar(id: number): void {
+    if (confirm('¿Deseas eliminar esta mascota?')) {
+      this.mascotaService.delete(id);
+      this.listar();
+    }
+  }
+
+  limpiar(): void {
+    this.mascota = { id: 0, nombre: '', edad: 0 };
+    this.enEdicion = false;
   }
 }
